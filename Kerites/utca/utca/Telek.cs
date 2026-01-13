@@ -33,6 +33,15 @@ namespace utca
             // using automatikusan bezárja a streamet, ha a saját blokkja végére érünk (legtöbb esetben ez a leghatékonyabb)
             using (StreamReader reader = new StreamReader(fajlNev))
             {
+                if (!File.Exists(Program.FAJLNEV))
+                {
+                    Console.WriteLine("A 'kerites.txt' nevű fájl nem létezik!");
+                }
+                else
+                {
+                    Console.WriteLine("SIKERES BEOLVASÁS!");
+                }
+
                 while (!reader.EndOfStream)
                 {
                     string sor = reader.ReadLine();
@@ -49,6 +58,10 @@ namespace utca
             return telekLista;
         }
 
+        public static int EladottTelkekSzama(List<Telek> telekLista)
+        {
+            return telekLista.Count();
+        }
 
 
     }
