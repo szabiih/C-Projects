@@ -63,6 +63,40 @@ namespace utca
             return telekLista.Count();
         }
 
+        public static void UtolsoTelek(List<Telek> telekLista)
+        {
+            //  először return-öt és out paramétert használtam, hogy a Program.cs-ben irassam ki az értékeket a Console.WriteLine() metódus segítségével, viszont végül úgy döntöttem, hogy itt oldom meg a kiíratást (azaz void a függvény)
+            List<Telek> parosTelkek = new List<Telek>();
+            List<Telek> paratlanTelkek = new List<Telek>();
 
+            Telek utolsoTelek = telekLista[telekLista.Count - 1];
+            int oldal = utolsoTelek.Oldal;
+
+            foreach (Telek telek in telekLista)
+            {
+                if (telek.Oldal % 2 == 0)
+                {
+                    parosTelkek.Add(telek);
+                }
+                else
+                {
+                    paratlanTelkek.Add(telek);
+                }
+            }
+
+            if (oldal % 2 == 0)
+            {
+                Console.WriteLine("A páros oldalon adták el az utolsó telket.");
+                Console.WriteLine($"Az utolsó telek házszáma: {parosTelkek.Count() * 2}");
+            }
+            else
+            {
+                Console.WriteLine("A páratlan oldalon adták el az utolsó telket.");
+                Console.WriteLine($"Az utolsó telek házszáma: {paratlanTelkek.Count() * 2 - 1}");
+            }
+        }
+
+
+        //  majd ide írjátok a többi feladat megoldásáit... (Zoli, Andris, Peti)
     }
 }

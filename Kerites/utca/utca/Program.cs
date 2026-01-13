@@ -20,7 +20,7 @@ namespace utca
 
             //  3. Feladat
             Console.WriteLine("3. Feladat");
-
+            Telek.UtolsoTelek(telkek);
             Console.WriteLine();
 
             //  4. Feladat
@@ -35,11 +35,6 @@ namespace utca
 
             //  6. Feladat
             Console.WriteLine("6. Feladat");
-
-            Console.WriteLine();
-
-            //  7. Feladat
-            Console.WriteLine("7. Feladat");
 
             Console.WriteLine();
         }
