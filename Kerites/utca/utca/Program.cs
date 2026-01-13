@@ -6,7 +6,7 @@ namespace utca
         static void Main(string[] args)
         {
             //  1. Feladat
-
+            List<Telek> telkek = Telek.Beolvasas("kerites.txt");
             Console.WriteLine("1. Feladat");
 
             //  2. Feladat

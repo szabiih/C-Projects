@@ -12,7 +12,7 @@ namespace utca
         //                  (A C# fordító automatikusan létrehoz egy privát mezőt)
         public int Oldal { get; set; }
         public int Szelesseg { get; set; }
-        public int Kerites { get; set; }
+        public char Kerites { get; set; }
 
         //  Konstruktor
         public Telek(int oldal, int szelesseg, char kerites)
@@ -25,6 +25,31 @@ namespace utca
         }
 
         //  Függvények (Methods)
+        public static List<Telek> Beolvasas(string fajlNev)
+        {
+            List<Telek> telekLista = new List<Telek>();
+
+            // StreamReader: soronként tudjuk kezelni a fájl olvasását, minden ReadLine() hívás a soron következő szöveget adja vissza stringként
+            // using automatikusan bezárja a streamet, ha a saját blokkja végére érünk (legtöbb esetben ez a leghatékonyabb)
+            using (StreamReader reader = new StreamReader(fajlNev))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string sor = reader.ReadLine();
+                    string[] adatok = sor.Split(' ');
+
+                    int oldal = int.Parse(adatok[0]);
+                    int szelesseg = int.Parse(adatok[1]);
+                    char kerites = char.Parse(adatok[2]);
+
+                    telekLista.Add(new Telek(oldal, szelesseg, kerites));
+                }
+            }
+
+            return telekLista;
+        }
+
+
 
     }
 }
