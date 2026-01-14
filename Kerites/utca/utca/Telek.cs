@@ -63,11 +63,9 @@ namespace utca
             return telekLista.Count();
         }
 
-        public static void UtolsoTelek(List<Telek> telekLista)
+        public static void UtolsoTelek(List<Telek> telekLista, List<Telek> parosTelkek, List<Telek> paratlanTelkek)
         {
             //  először return-öt és out paramétert használtam, hogy a Program.cs-ben irassam ki az értékeket a Console.WriteLine() metódus segítségével, viszont végül úgy döntöttem, hogy itt oldom meg a kiíratást (azaz void a függvény)
-            List<Telek> parosTelkek = new List<Telek>();
-            List<Telek> paratlanTelkek = new List<Telek>();
 
             Telek utolsoTelek = telekLista[telekLista.Count - 1];
             int oldal = utolsoTelek.Oldal;
@@ -96,6 +94,25 @@ namespace utca
             }
         }
 
+        public static void UgyanOlyanSzinuTelekKerites(List<Telek> paratlanTelkek)
+        {
+            char elozoSzin = ' ';
+            int hazszam = -1;
+
+            foreach (Telek telek in paratlanTelkek)
+            {
+                char mostaniSzin = telek.Kerites;
+
+                if (elozoSzin == mostaniSzin && mostaniSzin != ':' && mostaniSzin != '#' && elozoSzin != ':' && elozoSzin != '#')
+                {
+                    Console.WriteLine($"A szomszédossal egyezik a kerítés színe: {hazszam}");
+                    break;
+                }
+
+                hazszam += 2;
+                elozoSzin = telek.Kerites;
+            }
+        }
 
         //  majd ide írjátok a többi feladat megoldásáit... (Zoli, Andris, Peti)
     }

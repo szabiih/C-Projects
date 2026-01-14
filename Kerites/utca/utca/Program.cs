@@ -4,6 +4,8 @@ namespace utca
     internal class Program
     {
         public static readonly string FAJLNEV = "kerites.txt";
+        private static List<Telek> parosTelkek = new List<Telek>();
+        private static List<Telek> paratlanTelkek = new List<Telek>();
 
         static void Main(string[] args)
         {
@@ -20,12 +22,12 @@ namespace utca
 
             //  3. Feladat
             Console.WriteLine("3. Feladat");
-            Telek.UtolsoTelek(telkek);
+            Telek.UtolsoTelek(telkek, parosTelkek, paratlanTelkek);
             Console.WriteLine();
 
             //  4. Feladat
             Console.WriteLine("4. Feladat");
-
+            Telek.UgyanOlyanSzinuTelekKerites(paratlanTelkek);
             Console.WriteLine();
 
             //  5. Feladat
