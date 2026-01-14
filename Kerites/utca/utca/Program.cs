@@ -32,7 +32,7 @@ namespace utca
 
             //  5. Feladat
             Console.WriteLine("5. Feladat");
-
+            Telek.TelekKeresese(parosTelkek, paratlanTelkek);
             Console.WriteLine();
 
             //  6. Feladat

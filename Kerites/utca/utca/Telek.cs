@@ -60,7 +60,7 @@ namespace utca
 
         public static int EladottTelkekSzama(List<Telek> telekLista)
         {
-            return telekLista.Count();
+            return telekLista.Count;
         }
 
         public static void UtolsoTelek(List<Telek> telekLista, List<Telek> parosTelkek, List<Telek> paratlanTelkek)
@@ -85,12 +85,12 @@ namespace utca
             if (oldal % 2 == 0)
             {
                 Console.WriteLine("A páros oldalon adták el az utolsó telket.");
-                Console.WriteLine($"Az utolsó telek házszáma: {parosTelkek.Count() * 2}");
+                Console.WriteLine($"Az utolsó telek házszáma: {parosTelkek.Count * 2}");
             }
             else
             {
                 Console.WriteLine("A páratlan oldalon adták el az utolsó telket.");
-                Console.WriteLine($"Az utolsó telek házszáma: {paratlanTelkek.Count() * 2 - 1}");
+                Console.WriteLine($"Az utolsó telek házszáma: {paratlanTelkek.Count * 2 - 1}");
             }
         }
 
@@ -114,6 +114,34 @@ namespace utca
             }
         }
 
-        //  majd ide írjátok a többi feladat megoldásáit... (Zoli, Andris, Peti)
+        public static void TelekKeresese(List<Telek> parosTelkek, List<Telek> paratlanTelkek)
+        {
+            Console.WriteLine("Adjon meg egy házszámot!");
+            int input = int.Parse(Console.ReadLine());
+
+            Telek keresettTelek = null;
+
+            if (input % 2 == 0)
+            {
+                int index = input / 2 - 1;
+                if (index >= 0 && index < parosTelkek.Count)
+                {
+                    keresettTelek = parosTelkek[index];
+                }
+            }
+            else
+            {
+                int index = 0;  //  ide kell írni
+                if (index >= 0 && index < paratlanTelkek.Count)
+                {
+                    keresettTelek= paratlanTelkek[index];
+                }
+            }
+
+            //  ide kell írni
+
+        }
+
+        //  egyedül csináltam meg az egészet xDD
     }
 }
