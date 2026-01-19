@@ -116,7 +116,7 @@ namespace utca
 
         public static void TelekKeresese(List<Telek> parosTelkek, List<Telek> paratlanTelkek)
         {
-            Console.WriteLine("Adjon meg egy házszámot!");
+            Console.Write("Adjon meg egy házszámot! ");
             int input = int.Parse(Console.ReadLine());
 
             Telek keresettTelek = null;
@@ -131,14 +131,23 @@ namespace utca
             }
             else
             {
-                int index = 0;  //  ide kell írni
+                int index = (input - 1) / 2;
                 if (index >= 0 && index < paratlanTelkek.Count)
                 {
                     keresettTelek= paratlanTelkek[index];
                 }
             }
 
-            //  ide kell írni
+            if (keresettTelek != null)
+            {
+                Console.WriteLine($"A kerítés színe / állapota: {keresettTelek.Kerites}");
+            }
+            else
+            {
+                Console.WriteLine("Nincs ilyen házszámú telek.");
+            }
+
+            //  még ide kell a 5.b (csak az a van meg)
 
         }
 
