@@ -31,7 +31,7 @@ namespace utca
 
             if (!File.Exists(fajlNev))
             {
-                Console.WriteLine("A 'kerites.txt' nevű fájl nem létezik!");
+                Console.WriteLine($"A '{fajlNev}' nevű fájl nem létezik!");
             }
             else
             {
@@ -165,6 +165,32 @@ namespace utca
             }
         }
 
-        
+        public static void Mentes(string fajlNev, List<Telek> paratlanTelkek)
+        {
+            //  fájlírásnál ha nem létezik a fájl, akkor sem kapunk exception-t, hanem automatikusan létrehozza a fájlt, majd elkezd írni bele (bin mappa)
+            if (!File.Exists(fajlNev))
+            {
+                Console.WriteLine($"A '{fajlNev}' nevű fájl nem létezik!");
+            }
+            else
+            {
+                Console.WriteLine("SIKERES BEOLVASÁS!");
+            }
+
+            //  StreamWriter: a StreamReader-hez hasonlóan soronként tudjuk kezelni a fájl írását, minden WriteLine() hívás a megadott stringet fogja beleírni a file aktuális végére
+            //  StreamWriter második paramétere megmondja, hogy felülírjuk-e a fájl korábbi tartalmát (false), vagy meghagyjuk a korábbi tartalmát, és csak a fájl végére kezdünk el további írni (true)
+            using (StreamWriter writer = new StreamWriter(fajlNev, false))
+            {
+                string utcakep = "";
+                foreach (Telek telek in paratlanTelkek)
+                {
+                    utcakep += "".PadLeft(telek.Szelesseg, telek.Kerites);
+                }
+                
+                writer.WriteLine(utcakep);
+
+                //  MÉG NINCS KÉSZ FOLYTATNI KELL
+            }
+        }
     }
 }

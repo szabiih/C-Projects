@@ -3,7 +3,8 @@ namespace utca
 {
     internal class Program
     {
-        public static readonly string FAJLNEV = "kerites.txt";
+        private static readonly string FAJLNEV = "kerites.txt";
+        private static readonly string MENTES = "utcakep.txt";
         private static List<Telek> parosTelkek = new List<Telek>();
         private static List<Telek> paratlanTelkek = new List<Telek>();
 
@@ -37,7 +38,7 @@ namespace utca
 
             //  6. Feladat
             Console.WriteLine("6. Feladat");
-
+            Telek.Mentes(MENTES, paratlanTelkek);
             Console.WriteLine();
         }
     }
