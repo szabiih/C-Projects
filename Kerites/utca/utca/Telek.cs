@@ -29,19 +29,19 @@ namespace utca
         {
             List<Telek> telekLista = new List<Telek>();
 
+            if (!File.Exists(fajlNev))
+            {
+                Console.WriteLine("A 'kerites.txt' nevű fájl nem létezik!");
+            }
+            else
+            {
+                Console.WriteLine("SIKERES BEOLVASÁS!");
+            }
+
             // StreamReader: soronként tudjuk kezelni a fájl olvasását, minden ReadLine() hívás a soron következő szöveget adja vissza stringként
             // using automatikusan bezárja a streamet, ha a saját blokkja végére érünk (legtöbb esetben ez a leghatékonyabb)
             using (StreamReader reader = new StreamReader(fajlNev))
             {
-                if (!File.Exists(Program.FAJLNEV))
-                {
-                    Console.WriteLine("A 'kerites.txt' nevű fájl nem létezik!");
-                }
-                else
-                {
-                    Console.WriteLine("SIKERES BEOLVASÁS!");
-                }
-
                 while (!reader.EndOfStream)
                 {
                     string sor = reader.ReadLine();
@@ -58,10 +58,10 @@ namespace utca
             return telekLista;
         }
 
-        public static int EladottTelkekSzama(List<Telek> telekLista)
-        {
-            return telekLista.Count;
-        }
+        //public static int EladottTelkekSzama(List<Telek> telekLista)
+        //{
+        //    return telekLista.Count;
+        //}
 
         public static void UtolsoTelek(List<Telek> telekLista, List<Telek> parosTelkek, List<Telek> paratlanTelkek)
         {
@@ -119,7 +119,11 @@ namespace utca
             Console.Write("Adjon meg egy házszámot! ");
             int input = int.Parse(Console.ReadLine());
 
+            Random rnd = new Random();
             Telek keresettTelek = null;
+            char ujSzin;
+            char szin01 = ' ';
+            char szin02 = ' ';
 
             if (input % 2 == 0)
             {
@@ -127,6 +131,8 @@ namespace utca
                 if (index >= 0 && index < parosTelkek.Count)
                 {
                     keresettTelek = parosTelkek[index];
+                    try { szin01 = parosTelkek[index - 1].Kerites; } catch(ArgumentOutOfRangeException) { szin01 = ' '; Console.WriteLine("Nincs bal szomszéd!"); }
+                    try { szin02 = parosTelkek[index + 1].Kerites; } catch(ArgumentOutOfRangeException) { szin02 = ' '; Console.WriteLine("Nincs jobb szomszéd!"); }
                 }
             }
             else
@@ -135,22 +141,30 @@ namespace utca
                 if (index >= 0 && index < paratlanTelkek.Count)
                 {
                     keresettTelek= paratlanTelkek[index];
+                    try { szin01 = paratlanTelkek[index - 1].Kerites; } catch(ArgumentOutOfRangeException) { szin01 = ' '; Console.WriteLine("Nincs bal szomszéd!"); }
+                    try { szin02 = paratlanTelkek[index + 1].Kerites; } catch(ArgumentOutOfRangeException) { szin02 = ' '; Console.WriteLine("Nincs jobb szomszéd!"); }
                 }
             }
+
+            //  A char valójában egy szám (Unicode kód).
+            do
+            {
+                ujSzin = (char)rnd.Next('A', 'Z' + 1);
+            }
+            while (ujSzin == keresettTelek.Kerites || ujSzin == szin01 || ujSzin == szin02);
+
 
             if (keresettTelek != null)
             {
                 Console.WriteLine($"A kerítés színe / állapota: {keresettTelek.Kerites}");
+                Console.WriteLine($"Egy lehetséges festési szín: {ujSzin}");
             }
             else
             {
                 Console.WriteLine("Nincs ilyen házszámú telek.");
             }
-
-            //  még ide kell a 5.b (csak az a van meg)
-
         }
 
-        //  egyedül csináltam meg az egészet xDD
+        
     }
 }

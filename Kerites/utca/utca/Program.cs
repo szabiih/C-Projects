@@ -16,13 +16,13 @@ namespace utca
 
             //  2. Feladat
             Console.WriteLine("2. Feladat");
-            int szam01 = Telek.EladottTelkekSzama(telkek);
-            Console.WriteLine($"Az eladott telkek száma: {szam01}");
+            //int szam01 = Telek.EladottTelkekSzama(telkek);
+            Console.WriteLine($"Az eladott telkek száma: {telkek.Count}");
             Console.WriteLine();
 
             //  3. Feladat
             Console.WriteLine("3. Feladat");
-            Telek.UtolsoTelek(telkek, parosTelkek, paratlanTelkek);
+            Telek.UtolsoTelek(telkek, parosTelkek, paratlanTelkek);     //  mivel referencia típus feltölti a páros és páratlan listát
             Console.WriteLine();
 
             //  4. Feladat
