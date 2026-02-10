@@ -18,7 +18,7 @@ namespace Versenyzok
 
             //  3. Feladat
             Console.WriteLine("3. Feladat");
-
+            Console.WriteLine($"Az utolsó pilóta neve: {pilots[pilots.Count - 1].Name}");
             Console.WriteLine();
 
             //  4. Feladat
